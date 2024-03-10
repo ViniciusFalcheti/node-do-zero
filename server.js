@@ -6,11 +6,11 @@ const urls = ["http://localhost:5173/", "http://localhost:3333/"]
 
 const server = fastify()
 
-await fastify.register(cors, { 
-    origin: urls,
-    methods: ['GET', 'POST'],
-    credentials: true
-  })
+// await fastify.register(cors, { 
+//     origin: urls,
+//     methods: ['GET', 'POST'],
+//     credentials: true
+//   })
 
 // fastify.addHook('preHandler', (req, reply, done) => {
 //     reply.header("Access-Control-Allow-Origin", "http://localhost:5173/")
@@ -40,6 +40,11 @@ server.post('/videos', async (request, reply) => {
 
 server.get('/videos', async (request) => {
     const search = request.query.search
+    request.headers = {
+        "Access-Control-Allow-Origin": "http://localhost:5173/",
+        "Access-Control-Allow-Headers": "content-type",
+        "Access-Control-Allow-Methods": "PUT, PATCH, DELETE"
+      }
 
     const videos = await database.list(search)
 
