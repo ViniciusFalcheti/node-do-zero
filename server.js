@@ -6,18 +6,18 @@ const urls = ["http://localhost:5173/", "http://localhost:3333/"]
 
 const server = fastify()
 
-// await fastify.register(cors, { 
-//     origin: urls,
-//     methods: ['GET', 'POST'],
-//     credentials: true
-//   })
-
-fastify.addHook('preHandler', (req, reply, done) => {
-    reply.header("Access-Control-Allow-Origin", "http://localhost:5173/")
-    reply.header("Access-Control-Allow-Headers", "content-type")
-    reply.header("Access-Control-Allow-Methods", "PUT, PATCH, DELETE")
-    done()
+await fastify.register(cors, { 
+    origin: urls,
+    methods: ['GET', 'POST'],
+    credentials: true
   })
+
+// fastify.addHook('preHandler', (req, reply, done) => {
+//     reply.header("Access-Control-Allow-Origin", "http://localhost:5173/")
+//     reply.header("Access-Control-Allow-Headers", "content-type")
+//     reply.header("Access-Control-Allow-Methods", "PUT, PATCH, DELETE")
+//     done()
+//   })
 
 // const database = new DatabaseMemory()
 const database = new DatabasePostgres()
