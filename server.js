@@ -9,7 +9,7 @@ const server = fastify()
 await fastify.register(cors, { 
     origin: urls,
     methods: ['GET', 'POST'],
-    // credentials: true
+    credentials: true
   })
 
 // const database = new DatabaseMemory()
