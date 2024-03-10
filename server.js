@@ -7,7 +7,7 @@ const urls = ["http://localhost:5173/", "http://localhost:3333/"]
 const server = fastify()
 
 await server.register(cors, { 
-    origin: urls,
+    origin: '*',
     methods: ['GET', 'POST'],
     credentials: true
   })
